@@ -52,9 +52,10 @@ class LoginController extends Controller
      * @Template()
      */
     public function findAction($identifiant){
+        $userRepository =$this->getUserRepository();
 
         /** @var  $users \Scourgen\WebBundle\Entity\User */
-        $users = $this->getUserRepository()->findBy(array('identifiant'=>$identifiant));
+        $users = $userRepository->getUserByIdentifiant($identifiant);
         foreach($users as  $user){
             echo($user->getIdentifiant());
         }
