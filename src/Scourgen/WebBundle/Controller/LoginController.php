@@ -27,7 +27,18 @@ class LoginController extends Controller
      */
     public function loginAction()
     {
-        return array();
+        $user = new User();
+
+        $form = $this->createFormBuilder($user)
+            ->setAttribute('class', 'resolved-form exempt-from-default-ajax')
+            ->add('identifiant','text')
+            ->add('save', 'submit', array(
+                'attr' => array('class' => 'btn btn-default'),
+            ))
+            ->getForm();
+
+
+        return array('form' => $form->createView(),'test'=>'test');
     }
 
 
