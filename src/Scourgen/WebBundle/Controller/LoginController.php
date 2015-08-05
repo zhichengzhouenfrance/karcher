@@ -32,12 +32,14 @@ class LoginController extends Controller
 
             $identifiant =  $request->request->get('identifiant');
 
-            echo $identifiant;
+            $pathInfo = $request->getPathInfo();
+            $requestUri = $request->getRequestUri();
 
+            $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), 'article');
 
-            return $this->render('ScourgenWebBundle:Article:find.html.twig', array(
+           // $uri = $this->get('router')->generate('scourgen_web_article_index', array());
 
-            ));
+           // return $this->redirect($uri, array());
 
         }
 
