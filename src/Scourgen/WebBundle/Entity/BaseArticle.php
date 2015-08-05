@@ -5,7 +5,7 @@ namespace Scourgen\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="BaseArrticleRepository")
+ * @ORM\Entity(repositoryClass="BaseArticleRepository")
  * @ORM\Table(name="base_article",indexes={@ORM\Index(name="reference_idx", columns={"reference"})})
  */
 class BaseArticle{

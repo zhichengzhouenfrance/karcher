@@ -1,7 +1,7 @@
 {% extends 'ScourgenWebBundle::layout.html.twig' %}
 
-{% block content %}
 
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="span12">
@@ -9,26 +9,19 @@
                     <div class="form-group">
                         <label for="inputType" class="col-md-3 control-label col-md-offset-2">veuillez saisir votre identifiant</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" id="inputType" placeholder="identifiant">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inputType" placeholder="identifiant" name="identifiant">
+                                   <span class="input-group-btn">
+                                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                   </span>
+                             </div>
                         </div>
                     </div>
                 </form>
-                {{ form_start(form) }}
-                    <div class="form-group">
-                        {{ form_label(form.identifiant,'veuillez saisir votre identifiant' ,{ 'label_attr': {'class': 'col-md-3 control-label col-md-offset-2'} }) }}
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                {{ form_widget(form.identifiant,{ 'attr': {'class': 'form-control'} }) }}
-                                   <span class="input-group-btn">
-                                         {{ form_widget(form.save,{ 'label': 'GO' }) }}
-                                   </span>
-                            </div>
-                        </div>
-                    </div>
-                {{ form_end(form) }}
             </div>
         </div>
     </div>
+
     {% block foot %}
        {{ parent() }}
     {% endblock %}

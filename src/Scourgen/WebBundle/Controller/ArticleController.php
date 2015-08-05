@@ -1,18 +1,17 @@
 <?php
-
 namespace Scourgen\WebBundle\Controller;
 
-use Scourgen\WebBundle\Entity\BaseArticle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Scourgen\WebBundle\Entity\BaseArticle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 /**
- * @Route("/")
+ * @Route("/article")
  */
-class DefaultController extends Controller
+class ArticleController extends Controller
 {
-
-
     /**
      * @return \Scourgen\WebBundle\BaseArticle
      */
@@ -27,14 +26,25 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $baseArticleFormPath = "article";
-
+        
         return array();
 
     }
 
+    /**
+     * @Route("/{reference}")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function findAction($reference)
+    {
+        $articleRepository  = $this->getArticleRepository();
+        $articles = $articleRepository->getArticleByReference($reference);
+        foreach($articles as  $article){
+            echo($article->getLibelle());
+        }
 
+        return array();
 
-
-
+    }
 }

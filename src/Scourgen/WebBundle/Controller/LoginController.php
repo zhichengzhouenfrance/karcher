@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/login")
@@ -25,20 +26,22 @@ class LoginController extends Controller
      * @Route("/")
      * @Template()
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        $user = new User();
+        if( $request->request->has('identifiant')){
 
-        $form = $this->createFormBuilder($user)
-            ->setAttribute('class', 'resolved-form exempt-from-default-ajax')
-            ->add('identifiant','text')
-            ->add('save', 'submit', array(
-                'attr' => array('class' => 'btn btn-default'),
-            ))
-            ->getForm();
+            $identifiant =  $request->request->get('identifiant');
+
+            echo $identifiant;
 
 
-        return array('form' => $form->createView(),'test'=>'test');
+            return $this->render('ScourgenWebBundle:Article:find.html.twig', array(
+
+            ));
+
+        }
+
+        return array();
     }
 
 
@@ -64,6 +67,7 @@ class LoginController extends Controller
      */
     public function findAction($identifiant){
         $userRepository =$this->getUserRepository();
+
 
         /** @var  $users \Scourgen\WebBundle\Entity\User */
         $users = $userRepository->getUserByIdentifiant($identifiant);
