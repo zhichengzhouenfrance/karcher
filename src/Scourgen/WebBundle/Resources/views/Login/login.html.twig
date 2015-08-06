@@ -13,22 +13,25 @@
 
                 <div class="panel-body" >
 
-                    <form name="form" id="form" class="form-horizontal"  method="POST" action='{{ path('scourgen_web_article_index') }}'>
+                    <form name="form" id="form" class="form-horizontal"  method="POST" action=''>
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="user" type="text" class="form-control" name="identifiant" value="" placeholder="Identifiant">
+                            <input id="user" type="text" class="form-control" name="identifiant" value="" placeholder=" {% if app.request.cookies.get('identifiant') != null %}{{ app.request.cookies.get('identifiant') }}
+                 {% else %} identifiant
+                            {% endif %}">
+                            <span class="help-inline">{{ error }}</span>
                         </div>
-                        <div class="input-group">
+                        <div class="input-group" style="margin-top: 15px">
                             <label>
-                                <input type="checkbox" value="remember-me"> Remember me
+                                <input type="checkbox" name="rememberme" value="remember-me" /> Maintenir la connexion
                             </label>
                         </div>
 
                         <div class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                                <button type="submit" href="#" class="btn btn-primary pull-right btn-color"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
                             </div>
                         </div>
 

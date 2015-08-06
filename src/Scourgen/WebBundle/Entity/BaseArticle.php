@@ -19,9 +19,25 @@ class BaseArticle{
 
 
     /**
+ * @ORM\Column(type="string")
+ */
+    protected $reference;
+
+    /**
      * @ORM\Column(type="string")
      */
-    protected $reference;
+    protected $reference_format;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $hierarchie;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $validite;
+
 
     /**
      * @ORM\Column(type="string")
@@ -114,5 +130,74 @@ class BaseArticle{
     public function getPuht()
     {
         return $this->puht;
+    }
+
+    /**
+     * Set reference_format
+     *
+     * @param string $referenceFormat
+     * @return BaseArticle
+     */
+    public function setReferenceFormat($referenceFormat)
+    {
+        $this->reference_format = $referenceFormat;
+
+        return $this;
+    }
+
+    /**
+     * Get reference_format
+     *
+     * @return string 
+     */
+    public function getReferenceFormat()
+    {
+        return $this->reference_format;
+    }
+
+    /**
+     * Set hierarchie
+     *
+     * @param string $hierarchie
+     * @return BaseArticle
+     */
+    public function setHierarchie($hierarchie)
+    {
+        $this->hierarchie = $hierarchie;
+
+        return $this;
+    }
+
+    /**
+     * Get hierarchie
+     *
+     * @return string 
+     */
+    public function getHierarchie()
+    {
+        return $this->hierarchie;
+    }
+
+    /**
+     * Set validite
+     *
+     * @param string $validite
+     * @return BaseArticle
+     */
+    public function setValidite($validite)
+    {
+        $this->validite = $validite;
+
+        return $this;
+    }
+
+    /**
+     * Get validite
+     *
+     * @return string 
+     */
+    public function getValidite()
+    {
+        return $this->validite;
     }
 }

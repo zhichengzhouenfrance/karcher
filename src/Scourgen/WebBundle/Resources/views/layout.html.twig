@@ -11,12 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/jquery-ui.structure.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/bootstrap-switch.min.css') }}">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/jquery-ui.theme.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/kaercher.css') }}">
 
     <!-- Latest compiled and minified JavaScript -->
+    <script src="{{ asset('bundles/scourgenweb/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('bundles/scourgenweb/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/bootstrap-switch.min.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/kaercher.autocomplete.js') }}"></script>
 
 </head>
 <body>
@@ -26,8 +37,13 @@
     <![endif]-->
     <div class="container" style="padding-top : 30px">
         <div class="row">
-            <div class="span3">
+            <div class="col-md-11 no-padding" ">
                 <img src="{{ asset('bundles/scourgenweb/images/Kaercher_logo.png')}}">
+                <div class="pull-right">
+                    {% if (app.session.get('identifiant') != null  or app.request.cookies.get("identifiant") != null) %}
+                    <a href="{{ path('scourgen_web_login_disconnect') }}" class="disconnect-color"> <span aria-hidden="true" class="glyphicon glyphicon-log-out"></span></a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -69,20 +85,16 @@
 
     <hr>
 
-    {% block foot %}
-        <footer>
-            <p>&copy; Company 2015</p>
-        </footer>
-    {% endblock %}
+
 </div>
+{% block foot %}
+    <footer class="foot">
+        <p>&copy; Company 2015</p>
+    </footer>
+{% endblock %}
 {% endblock %}<!-- /container -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ asset('bundles/scourgenweb/js/vendor/jquery-1.11.2.min.js') }}"><\/script>')</script>
 
-<script src="{{ asset('bundles/scourgenweb/js/vendor/bootstrap.min.js')}}"></script>
 
-<script src="{{ asset('bundles/scourgenwebjs/plugins.js')}}"></script>
-<script src="{{ asset('bundles/scourgenweb/js/main.js')}}"></script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>

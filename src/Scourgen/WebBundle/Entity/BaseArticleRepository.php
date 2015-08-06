@@ -15,4 +15,14 @@ class BaseArticleRepository extends EntityRepository
     public function getArticleByReference($reference){
         return $this->findBy(array('reference'=>$reference));
     }
+
+    public function autoCompleteByReference($reference){
+        $qb = $this->createQueryBuilder('a');
+        $result = $qb
+                    ->where($qb->expr()->like('a.reference', ':reference'))
+                    ->setParameter('reference',$reference.'%')
+                    ->getQuery()
+                    ->getResult();
+        return $result;
+    }
 }
