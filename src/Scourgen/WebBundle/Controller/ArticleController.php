@@ -44,7 +44,7 @@ class ArticleController extends Controller
     public function indexAction(Request $request)
     {
         $session = $request->getSession();
-        if($this->loggedIn()){
+        if($this->isUserConnected($session)){
             return array('reference' => '');
         }else{
             $uri = $this->get('router')->generate('scourgen_web_login_login', array());
