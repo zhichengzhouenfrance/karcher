@@ -28,10 +28,16 @@
     <script src="{{ asset('bundles/scourgenweb/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('bundles/scourgenweb/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('bundles/scourgenweb/js/bootstrap-switch.min.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/angular.min.js') }}"></script>
+
+    <!-- customized javascript -->
     <script src="{{ asset('bundles/scourgenweb/js/kaercher.autocomplete.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/kaercher.angular.app.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/kaercher.angular.tab.controller.js') }}"></script>
+
 
 </head>
-<body>
+<body ng-app="kaercherApp">
 {% block head %}
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

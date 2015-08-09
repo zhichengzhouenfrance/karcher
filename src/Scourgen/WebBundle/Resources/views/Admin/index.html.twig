@@ -1,14 +1,12 @@
 {% extends 'ScourgenWebBundle::layout.html.twig' %}
 {% block content %}
-    <div class="container">
+    <div class="container" ng-controller="TabController">
         <div class="row">
-            <div class="row">
-                <div class="span12">
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="#">Administration</a></li>
-                        <li role="presentation"><a href="#">Static</a></li>
-                    </ul>
-                </div>
+            <div class="span12">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a ng-click="afficheTest()">Administration</a></li>
+                    <li role="presentation"><a  ng-click="afficheTest()">Static</a></li>
+                </ul>
             </div>
         </div>
     </div>

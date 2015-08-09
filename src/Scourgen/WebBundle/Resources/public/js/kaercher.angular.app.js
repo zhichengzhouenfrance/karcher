@@ -1,0 +1,1 @@
+var kaercherApp = angular.module('kaercherApp', []);
