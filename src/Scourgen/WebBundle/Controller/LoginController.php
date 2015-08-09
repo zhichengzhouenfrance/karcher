@@ -28,9 +28,9 @@ class LoginController extends Controller
     }
 
 
-    public function loggedIn(){
+    public function loggedIn($session){
         $loggedIn = false;
-        if(isset($_SESSION['identifiant'])||isset($_COOKIE['identifiant']))
+        if($session->has('identifiant')||isset($_COOKIE['identifiant']))
             $loggedIn = true;
         return $loggedIn;
     }
@@ -44,33 +44,82 @@ class LoginController extends Controller
         $identifiantName = "identifiant";
         $session = $request->getSession();
         $cookie = $request->cookies;
-        if(!$this->loggedIn()){
-
+        if(!$this->loggedIn($session)){
             if( $request->request->has("identifiant")){
                 $identifiant =  $request->request->get($identifiantName);
                 $userRepository = $this->getUserRepository();
                 $users = $userRepository->getUserByIdentifiant($identifiant);
                 if(count($users)>0){
-                    //put login into the session
-                    $session->set($identifiantName, $identifiant);
-                    //get uri of search article page
-                    $uri = $this->get('router')->generate('scourgen_web_article_index', array());
-                    //is the user set remember the login
-                    if($request->request->get("rememberme")){
-
-                        $cookie = new Cookie($identifiantName, $identifiant,time() +
-                            (3600 * 48));
-                        $response = new RedirectResponse($uri);
-                        $response->headers->setCookie($cookie);
-                        return $response;
+                   $user =  array_shift ( $users );
+                    //if user is not admin;
+                    if(!$user->getProfile()){
+                        //put login into the session symfony
+                        $session->set($identifiantName, $identifiant);
+                        $_SESSION['identifiant'] = $identifiant;
+                        //get uri of search article page
+                        $uri = $this->get('router')->generate('scourgen_web_article_index', array());
+                        //is the user set remember the login
+                        if($request->request->get("rememberme")){
+                            $cookie = new Cookie($identifiantName, $identifiant,time() +
+                                (3600 * 48));
+                            $response = new RedirectResponse($uri);
+                            $response->headers->setCookie($cookie);
+                            return $response;
+                        }
+                        //redirect to search product page
+                        return $this->redirect($uri);
+                    }else{
+                        //if user is admin
+                        if(!$request->request->has("password")){
+                            return array(
+                                'adminNeedPasswordAuthentification' => true,
+                                'error' => "",
+                                'password_error'=>"",
+                                'adminLogin'=> $identifiant
+                            );
+                        }else{
+                            //user admin's password is correct
+                            if($request->request->get("password")==$user->getPassword()){
+                                //put login into the session symfony
+                                $session->set($identifiantName, $identifiant);
+                                //get uri of search article page
+                                $uri = $this->get('router')->generate('scourgen_web_admin_index', array());
+                                //is the user set remember the login
+                                if($request->request->get("rememberme")){
+                                    $cookie = new Cookie($identifiantName, $identifiant,time() +
+                                        (3600 * 48));
+                                    $response = new RedirectResponse($uri);
+                                    $response->headers->setCookie($cookie);
+                                    return $response;
+                                }
+                                //redirect to administration page
+                                return $this->redirect($uri);
+                            }
+                            //user admin 's password is not correct
+                            else{
+                                return array(
+                                    'error' => "votre identifiant n'est connais pas",
+                                    'adminNeedPasswordAuthentification' => true,
+                                    'adminLogin'=> $identifiant,
+                                    'password_error' => "votre mot de passe n'est connais pas"
+                                );
+                            }
+                        }
                     }
-                    //redirect to search product page
-                    return $this->redirect($uri);
+
                 }
                 //identifiant n'est pas valide
-                return array('error' => "votre identifiant n'est connais pas");
+                return array(
+                    'error' => "votre identifiant n'est connais pas",
+                    'adminNeedPasswordAuthentification' => false,
+                    'adminLogin'=> ''
+                );
             }
-            return array('error' => "");
+            return array(
+                'error' => "",
+                'adminNeedPasswordAuthentification' => false,
+                'adminLogin'=> ''
+            );
         }else{
             $uri = $this->get('router')->generate('scourgen_web_article_index', array());
              return $this->redirect($uri);
@@ -124,6 +173,9 @@ class LoginController extends Controller
          *  apres le
          *
          * */
+        unset($_COOKIE['identifiant']);
+        setcookie('identifiant', null, -1, '/');
+
         return array();
     }
 }

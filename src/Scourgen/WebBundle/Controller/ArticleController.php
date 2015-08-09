@@ -29,9 +29,9 @@ class ArticleController extends Controller
         return  $this->getDoctrine()->getManager()->getRepository('ScourgenWebBundle:BaseArticle');
     }
 
-    public function loggedIn(){
+    public function loggedIn($session){
         $loggedIn = false;
-        if(isset($_SESSION['identifiant'])||isset($_COOKIE['identifiant']))
+        if($session->has('identifiant')||isset($_COOKIE['identifiant']))
             $loggedIn = true;
         return $loggedIn;
     }
@@ -44,7 +44,7 @@ class ArticleController extends Controller
     public function indexAction(Request $request)
     {
         $session = $request->getSession();
-        if($this->isUserConnected($session)){
+        if($this->loggedIn($session)){
             return array('reference' => '');
         }else{
             $uri = $this->get('router')->generate('scourgen_web_login_login', array());

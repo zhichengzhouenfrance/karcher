@@ -17,11 +17,18 @@
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="user" type="text" class="form-control" name="identifiant" value="" placeholder=" {% if app.request.cookies.get('identifiant') != null %}{{ app.request.cookies.get('identifiant') }}
-                 {% else %} identifiant
-                            {% endif %}">
-                            <span class="help-inline">{{ error }}</span>
+                            <input id="user" type="text" class="form-control" name="identifiant" value="{% if app.request.cookies.get('identifiant') != null %}{{ app.request.cookies.get('identifiant') }}{% elseif adminLogin != null %}{{ adminLogin }}{% else %}{% endif %}"
+                                   placeholder="identifiant">
+
                         </div>
+                        <span class="help-inline">{{ error }}</span>
+                         {% if adminNeedPasswordAuthentification == true %}
+                         <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                             <span class="help-inline">{{ password_error }}</span>
+                        {% endif %}
                         <div class="input-group" style="margin-top: 15px">
                             <label>
                                 <input type="checkbox" name="rememberme" value="remember-me" /> Maintenir la connexion

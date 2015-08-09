@@ -26,7 +26,9 @@ class User{
      */
     protected $password;
 
-
+    /**
+     * @ORM\Column(type="boolean")
+     */
     protected $profile;
     /**
      * Get id
@@ -82,5 +84,28 @@ class User{
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param boolean $profile
+     * @return User
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return boolean 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }
