@@ -1,13 +1,12 @@
 kaercherApp.controller('TabController', function ($scope) {
 
-    console.log("test");
+    $scope.actualPage = "admin";
 
-    $scope.test = "test";
+    $scope.affichePage = affichePage;
 
-    $scope.afficheTest = afficheTest;
-
-    function afficheTest (){
-        console.log($scope.test);
+    function affichePage (page){
+        $scope.actualPage  = page;
+        console.log($scope.actualPage);
     }
 
 });

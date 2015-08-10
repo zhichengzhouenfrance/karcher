@@ -4,10 +4,50 @@
         <div class="row">
             <div class="span12">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a ng-click="afficheTest()">Administration</a></li>
-                    <li role="presentation"><a  ng-click="afficheTest()">Static</a></li>
+                    <li role="presentation" class="active"><a ng-click="affichePage('admin')">Administration</a></li>
+                    <li role="presentation"><a  ng-click="affichePage('static')">Static</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="row" ng-if="actualPage == 'admin'">
+            <hr class="divider">
+            <h4>Select files from your computer</h4>
+            <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="file" name="files[]" id="js-upload-files" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+                </div>
+            </form>
+            <hr class="divider">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="row" ng-if="actualPage == 'static'">
+            static
         </div>
     </div>
     {% block foot %}
