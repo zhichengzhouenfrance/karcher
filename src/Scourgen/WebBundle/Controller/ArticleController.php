@@ -54,23 +54,24 @@ class ArticleController extends Controller
 
     /**
      * @Route("/find/")
-     * @Method({"POST"})
      * @Template()
      */
     public function findAction(Request $request)
     {
-        if($request->request->has('reference')){
+        $reference = '';
+        if($request->request->has('reference') && $request->request->get('reference') != ''){
+
             $reference = $request->request->get('reference');
             $articleRepository  = $this->getArticleRepository();
             $articles = $articleRepository->getArticleByReference($reference);
             if(count($articles)>0){
                 $article =  array_values($articles)[0];
-                return  array('article' => $article,'reference'=>$reference);
+                return  array('article' => $article,'reference'=>$reference,'error_message'=>"");
+            }else{
+                return  array('article' => '','reference'=>'','error_message'=>"Aucun résultat");
             }
         }
-
-        return  array('reference' => $reference);
-
+        return  array('article' => '','reference' => $reference,'error_message'=>"Aucun résultat n'est proposé si aucune référence d'article n'est saisie");
     }
 
 

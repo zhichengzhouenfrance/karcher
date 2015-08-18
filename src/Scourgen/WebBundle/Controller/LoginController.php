@@ -47,6 +47,7 @@ class LoginController extends Controller
         if(!$this->loggedIn($session)){
             if( $request->request->has("identifiant")){
                 $identifiant =  $request->request->get($identifiantName);
+                //le nombre de caractères qui doit être de 10 && l'identifiant qui doit commencer par 1701
                 $userRepository = $this->getUserRepository();
                 $users = $userRepository->getUserByIdentifiant($identifiant);
                 if(count($users)>0){
