@@ -21,33 +21,42 @@
                 </div>
             </form>
             <hr class="divider">
+            <div class="count">
+                {{ pagination.getTotalItemCount }}
+            </div>
             <table class="table table-striped">
-                <thead>
                 <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    {# sorting of properties based on query components #}
+                    <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                    <th{% if pagination.isSorted('a.reference') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Référence', 'a.reference') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Référence commerciale', ['a.ReferenceFormat', 'a.reference']) }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, "Libellé de l'article", ['a.id', 'a.libelle']) }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'PUHT', ['a.id', 'a.puht']) }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Libellé famille tarifaire', ['a.id', 'a.hierarchie']) }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Validité', ['a.id', 'a.validite']) }}</th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-            </table>
 
+                {# table body #}
+                {% for article in pagination %}
+                    <tr {% if loop.index is odd %}class="color"{% endif %}>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.reference }}</td>
+                        <td>{{ article.ReferenceFormat }}</td>
+                        <td>{{ article.libelle }}</td>
+                        <td>{{ article.puht }}</td>
+                        <td>{{ article.hierarchie }}</td>
+                        <td>{{ article.validite }}</td>
+
+                    </tr>
+                {% endfor %}
+            </table>
+            {# display navigation #}
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
         <div class="row" ng-if="actualPage == 'static'">
-            static
+
         </div>
     </div>
     {% block foot %}
