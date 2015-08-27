@@ -99,7 +99,7 @@ class LoginController extends Controller
                             //user admin 's password is not correct
                             else{
                                 return array(
-                                    'error' => "votre identifiant n'est connais pas",
+                                    'error' => "Votre identifiant n'est pas valide",
                                     'adminNeedPasswordAuthentification' => true,
                                     'adminLogin'=> $identifiant,
                                     'password_error' => "votre mot de passe n'est connais pas"
@@ -111,7 +111,7 @@ class LoginController extends Controller
                 }
                 //identifiant n'est pas valide
                 return array(
-                    'error' => "votre identifiant n'est connais pas",
+                    'error' => "Votre identifiant n'est pas valide",
                     'adminNeedPasswordAuthentification' => false,
                     'adminLogin'=> ''
                 );

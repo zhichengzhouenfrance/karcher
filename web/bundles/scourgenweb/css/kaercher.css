@@ -29,5 +29,9 @@ footer {
 }
 
 .no-padding{
-    padding-left: 0 ;
+    padding-left: 98px ;
+}
+
+.btn-primary:focus,.btn-primary:hover{
+    background-color: #ffed00;
 }
