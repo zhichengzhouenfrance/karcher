@@ -35,6 +35,11 @@ class LoginController extends Controller
         return $loggedIn;
     }
 
+    function startsWith($haystack, $needle) {
+        // search backwards starting from haystack length characters from the end
+        return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+    }
+
     /**
      * @Route("/")
      * @Template()
@@ -48,12 +53,15 @@ class LoginController extends Controller
             if( $request->request->has("identifiant")){
                 $identifiant =  $request->request->get($identifiantName);
                 //le nombre de caractères qui doit être de 10 && l'identifiant qui doit commencer par 1701
-                $userRepository = $this->getUserRepository();
-                $users = $userRepository->getUserByIdentifiant($identifiant);
-                if(count($users)>0){
-                   $user =  array_shift ( $users );
+
+                if(strlen($identifiant)>=10&& $this->startsWith($identifiant,"1701")){
+
+                    $userRepository = $this->getUserRepository();
+                    $users = $userRepository->getUserByIdentifiant($identifiant);
+
+                       $user =  array_shift ( $users );
                     //if user is not admin;
-                    if(!$user->getProfile()){
+                    if(count($users)<=0){
                         //put login into the session symfony
                         $session->set($identifiantName, $identifiant);
                         $_SESSION['identifiant'] = $identifiant;

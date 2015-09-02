@@ -29,7 +29,26 @@ footer {
 }
 
 .no-padding{
-    padding-left: 98px ;
+    padding-left: 5%;
+}
+
+
+@media only screen and (max-device-width: 768px){
+    .no-padding {
+        padding-left: 5% ;
+    }
+}
+
+@media all and (max-width: 640px){
+    .no-padding {
+        padding-left: 2% ;
+    }
+}
+
+@media all and (max-width: 480px){
+    .no-padding {
+        padding-left: 15px ;
+    }
 }
 
 .btn-primary:focus,.btn-primary:hover{

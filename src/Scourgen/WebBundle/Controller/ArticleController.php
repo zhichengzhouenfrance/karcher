@@ -68,7 +68,7 @@ class ArticleController extends Controller
                 $article =  array_values($articles)[0];
                 return  array('article' => $article,'reference'=>$reference,'error_message'=>"");
             }else{
-                return  array('article' => '','reference'=>'','error_message'=>"Aucun résultat");
+                return  array('article' => '','reference'=>'','error_message'=>"Aucun résultat ne correspond à votre recherche.");
             }
         }
         return  array('article' => '','reference' => $reference,'error_message'=>"Aucun résultat n'est proposé si aucune référence d'article n'est saisie");
