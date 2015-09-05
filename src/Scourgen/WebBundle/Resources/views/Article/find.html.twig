@@ -1,27 +1,23 @@
 {% extends 'ScourgenWebBundle::layout.html.twig' %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="row">
-                <div class="span12">
-                    <form class="form-horizontal" action='{{ path('scourgen_web_article_find')}}' method="POST">
-                        <div class="form-group">
-                            <!-- <label for="inputType" class="col-md-3 control-label col-md-offset-2">veuillez saisir votre identifiant</label>-->
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="reference" placeholder="Réference" name="reference" value="{{ reference }}">
-                                   <span class="input-group-btn">
-                                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                                   </span>
-                                </div>
-                            </div>
+        <div class="span12">
+            <form class="form-horizontal" action='{{ path('scourgen_web_article_find')}}' method="POST" id="article_form">
+                <div class="form-group">
+                    <!-- <label for="inputType" class="col-md-3 control-label col-md-offset-2">veuillez saisir votre identifiant</label>-->
+                    <div class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="reference" placeholder="Réference" name="reference" value="{{ reference }}">
+                           <span class="input-group-btn">
+                                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                           </span>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         {% if article != '' %}
-        <div class="row col-md-offset-3" >
+        <div class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" >
             Référence : {{ article.referenceFormat }}<br>
             Libellé   : {{ article.libelle }}<br>
             PU HT €   : {{ article.puht }} <br>
@@ -29,7 +25,7 @@
             Validité : {{ article.validite }} <br>
         </div>
             {% endif %}
-        <div class="row col-md-offset-3">{{ error_message }}</div>
+        <div class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">{{ error_message }}</div>
     </div>
     {% block foot %}
         {{ parent() }}

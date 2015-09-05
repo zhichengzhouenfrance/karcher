@@ -21,6 +21,9 @@ class BaseArticleRepository extends EntityRepository
         $result = $qb
                     ->where($qb->expr()->like('a.reference', ':reference'))
                     ->setParameter('reference',$reference.'%')
+                    ->orderBy('a.reference', 'ASC')
+                    ->setMaxResults(7)
+                    ->setFirstResult(10)
                     ->getQuery()
                     ->getResult();
         return $result;

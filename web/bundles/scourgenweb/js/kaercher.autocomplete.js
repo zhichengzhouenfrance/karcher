@@ -12,6 +12,11 @@ $(function() {
                    /* $('input.suggest-user').removeClass('ui-autocomplete-loading');*/
                 }
             });
+        },
+        select: function( event, ui ) {
+           $('#reference').val(ui.item.value);
+            console.log(ui.item.value);
+            $( "#article_form" ).submit()
         }
     });
 
