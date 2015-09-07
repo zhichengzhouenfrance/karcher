@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route("/login")
+ * @Route("/")
  */
 class LoginController extends Controller
 {

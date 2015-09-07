@@ -23,7 +23,6 @@ class BaseArticleRepository extends EntityRepository
                     ->setParameter('reference',$reference.'%')
                     ->orderBy('a.reference', 'ASC')
                     ->setMaxResults(7)
-                    ->setFirstResult(10)
                     ->getQuery()
                     ->getResult();
         return $result;

@@ -9,18 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="base_article",indexes={@ORM\Index(name="reference_idx", columns={"reference"})})
  */
 class BaseArticle{
-
+    
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-
-    /**
- * @ORM\Column(type="string")
- */
+    * @ORM\Column(type="string")
+    */
     protected $reference;
 
     /**
@@ -50,18 +43,6 @@ class BaseArticle{
      */
     protected $puht;
 
-
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set reference
