@@ -34,7 +34,7 @@ footer {
 
 
 .no-padding{
-    padding-left: 5%;
+    padding-left: 9%;
 }
 
 .seperator{
@@ -60,9 +60,19 @@ footer {
     margin-top : 20px;
 }
 
+/*ipad portail*/
 @media only screen and (max-device-width: 768px){
     .no-padding {
-        padding-left: 5% ;
+        padding-left: 6% ;
+    }
+}
+/*ipad landsacpe*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+    .no-padding{
+        padding-left: 10%;
     }
 }
 
@@ -78,7 +88,11 @@ and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : landscape) {
     .no-padding {
-        padding-left: 90px ;
+        padding-left: 100px ;
+    }
+
+    .footer-mobile{
+        top: 600px;
     }
 
 }
@@ -97,7 +111,7 @@ and (orientation : portrait) {
     }
 
     .no-padding {
-        padding-left: 15px;
+        padding-left: 30px;
     }
 
     .libelle-mtn-le-connexion{
@@ -113,4 +127,9 @@ and (orientation : portrait) {
         height : 110px;
         margin-top : 15px;
     }
+
+    .footer-mobile{
+        top: 550px;
+    }
+
 }

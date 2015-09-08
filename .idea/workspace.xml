@@ -80,7 +80,7 @@
       <file leaf-file-name="BaseArticleRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Entity/BaseArticleRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="612">
+            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="612">
               <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
               <folding />
             </state>
@@ -90,7 +90,7 @@
       <file leaf-file-name="BaseArticle.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Entity/BaseArticle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769" vertical-offset="391" max-vertical-offset="3230">
+            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="3230">
               <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding />
             </state>
@@ -100,18 +100,48 @@
       <file leaf-file-name="find.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Article/find.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="646">
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="646">
               <caret line="9" column="105" selection-start-line="9" selection-start-column="96" selection-end-line="9" selection-end-column="105" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Article/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17152466" vertical-offset="0" max-vertical-offset="892">
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="476">
               <caret line="9" column="105" selection-start-line="9" selection-start-column="105" selection-end-line="9" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/layout.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1127" max-vertical-offset="2006">
+              <caret line="95" column="49" selection-start-line="95" selection-start-column="49" selection-end-line="95" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.bootstrap.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/login.bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kaercher.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/kaercher.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24074075" vertical-offset="1309" max-vertical-offset="2380">
+              <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -148,8 +178,6 @@
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/js/kaercher.angular.login.controller.js" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Login/login.html.twig" />
-        <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/kaercher.css" />
-        <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/js/kaercher.autocomplete.js" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Controller/LoginController.php" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Controller/ArticleController.php" />
@@ -157,6 +185,8 @@
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Entity/BaseArticle.php" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Article/find.html.twig" />
         <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Article/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/layout.html.twig" />
+        <option value="$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/kaercher.css" />
       </list>
     </option>
   </component>
@@ -656,10 +686,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25887266" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25887266" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33579725" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -755,6 +785,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2040">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -891,13 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/login.bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="877">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Request.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1735" max-vertical-offset="34289">
@@ -1010,20 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1468" max-vertical-offset="2040">
-          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/kaercher.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1361" max-vertical-offset="2057">
-          <caret line="110" column="18" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Login/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1003">
@@ -1055,7 +1065,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Entity/BaseArticleRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="612">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="612">
           <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding />
         </state>
@@ -1063,7 +1073,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Entity/BaseArticle.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769" vertical-offset="391" max-vertical-offset="3230">
+        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="3230">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding />
         </state>
@@ -1071,7 +1081,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Article/find.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="646">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="646">
           <caret line="9" column="105" selection-start-line="9" selection-start-column="96" selection-end-line="9" selection-end-column="105" />
           <folding />
         </state>
@@ -1079,8 +1089,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/Article/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17152466" vertical-offset="0" max-vertical-offset="892">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="476">
           <caret line="9" column="105" selection-start-line="9" selection-start-column="105" selection-end-line="9" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/login.bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1127" max-vertical-offset="2006">
+          <caret line="95" column="49" selection-start-line="95" selection-start-column="49" selection-end-line="95" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scourgen/WebBundle/Resources/public/css/kaercher.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24074075" vertical-offset="1309" max-vertical-offset="2380">
+          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
           <folding />
         </state>
       </provider>
