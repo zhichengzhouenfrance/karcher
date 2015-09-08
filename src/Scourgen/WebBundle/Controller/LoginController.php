@@ -59,7 +59,6 @@ class LoginController extends Controller
                     $userRepository = $this->getUserRepository();
                     $users = $userRepository->getUserByIdentifiant($identifiant);
 
-                       $user =  array_shift ( $users );
                     //if user is not admin;
                     if(count($users)<=0){
                         //put login into the session symfony
@@ -87,6 +86,8 @@ class LoginController extends Controller
                                 'adminLogin'=> $identifiant
                             );
                         }else{
+                            $user =  array_shift ( $users );
+
                             //user admin's password is correct
                             if($request->request->get("password")==$user->getPassword()){
                                 //put login into the session symfony

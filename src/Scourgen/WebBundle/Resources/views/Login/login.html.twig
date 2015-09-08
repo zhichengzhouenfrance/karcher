@@ -17,9 +17,8 @@
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="user" type="text" ng-model="login" ng-change="validateLogin()" class="form-control" name="identifiant" value="{% if app.request.cookies.get('identifiant') != null %}{{ app.request.cookies.get('identifiant') }}{% elseif adminLogin != null %}{{ adminLogin }}{% else %}{% endif %}"
-                                   placeholder="identifiant">
-
+                            <input id="user" type="text" ng-model="login" ng-change="validateLogin()" class="form-control" name="identifiant" ng-init="login = {% if app.request.cookies.get('identifiant') %}{{ app.request.cookies.get('identifiant') }}{% elseif adminLogin  %}{{ adminLogin }}{% else %}{% endif %}"
+                                   placeholder="identifiant" >
                         </div>
                         <span class="help-inline">{{ error }}</span>
                          {% if adminNeedPasswordAuthentification == true %}

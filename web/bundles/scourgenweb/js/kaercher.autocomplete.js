@@ -17,6 +17,9 @@ $(function() {
            $('#reference').val(ui.item.value);
             console.log(ui.item.value);
             $( "#article_form" ).submit()
+        },
+        open: function(event, ui) {
+            $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
         }
     });
 
