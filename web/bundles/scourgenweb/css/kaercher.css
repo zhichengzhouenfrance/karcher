@@ -47,7 +47,7 @@ footer {
     text-transform: uppercase;
     margin: 0px 0px 18px 0px;
     font-weight: 900 !important;
-    padding-top:25px
+    padding-top:40px
 }
 .libelle-mtn-le-connexion{
     margin-top: 15px ;
@@ -57,6 +57,10 @@ footer {
 .bundle-middle{
     background :#ffed00 ;
     height : 120px;
+    margin-top : 30px;
+}
+
+.libelle-footer{
     margin-top : 20px;
 }
 
@@ -107,7 +111,7 @@ and (orientation : portrait) {
         text-transform: uppercase;
         margin: 0px 0px 18px 0px;
         font-weight: 900 !important;
-        padding-top:25px
+        padding-top:40px
     }
 
     .no-padding {
@@ -125,7 +129,7 @@ and (orientation : portrait) {
     .bundle-middle{
         background :#ffed00 ;
         height : 110px;
-        margin-top : 15px;
+        margin-top : 30px;
     }
 
     .footer-mobile{
