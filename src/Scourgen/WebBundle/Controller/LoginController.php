@@ -111,7 +111,7 @@ class LoginController extends Controller
                                     'error' => "Votre identifiant n'est pas valide",
                                     'adminNeedPasswordAuthentification' => true,
                                     'adminLogin'=> $identifiant,
-                                    'password_error' => "votre mot de passe n'est connais pas"
+                                    'password_error' => "Votre mot de passe n'est pas connu"
                                 );
                             }
                         }

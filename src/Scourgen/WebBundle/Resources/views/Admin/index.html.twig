@@ -5,29 +5,28 @@
             <div class="span12">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a ng-click="affichePage('admin')">Administration</a></li>
-                    <li role="presentation"><a  ng-click="affichePage('static')">Static</a></li>
+                    <li role="presentation"><a  ng-click="affichePage('static')">Statiques</a></li>
                 </ul>
             </div>
         </div>
         <div class="row" ng-if="actualPage == 'admin'">
             <hr class="divider">
-            <h4>Select files from your computer</h4>
+            <h4>Choisir un fichier sur votre ordinateur</h4>
             <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
                 <div class="form-inline">
                     <div class="form-group">
                         <input type="file" name="articleinputfile" id="js-upload-files">
                     </div>
-                    <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+                    <button type="submit" class="btn btn-sm btn-primary btn-color" id="js-upload-submit">Charger le fichier</button>
                 </div>
             </form>
             <hr class="divider">
             <div class="count">
-                {{ pagination.getTotalItemCount }}
+                Nombre total d'enregistrements :{{ pagination.getTotalItemCount }}
             </div>
             <table class="table table-striped">
                 <tr>
                     {# sorting of properties based on query components #}
-                    <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
                     <th{% if pagination.isSorted('a.reference') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Référence', 'a.reference') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Référence commerciale', ['a.ReferenceFormat', 'a.reference']) }}</th>
                     <th>{{ knp_pagination_sortable(pagination, "Libellé de l'article", ['a.id', 'a.libelle']) }}</th>
@@ -39,7 +38,6 @@
                 {# table body #}
                 {% for article in pagination %}
                     <tr {% if loop.index is odd %}class="color"{% endif %}>
-                        <td>{{ article.id }}</td>
                         <td>{{ article.reference }}</td>
                         <td>{{ article.ReferenceFormat }}</td>
                         <td>{{ article.libelle }}</td>

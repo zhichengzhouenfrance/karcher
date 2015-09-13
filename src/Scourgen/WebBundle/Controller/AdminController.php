@@ -2,7 +2,7 @@
 
 namespace Scourgen\WebBundle\Controller;
 
-use Proxies\__CG__\Scourgen\WebBundle\Entity\BaseArticle;
+use Scourgen\WebBundle\Entity\BaseArticle;
 use Scourgen\WebBundle\Entity\User;
 use Scourgen\WebBundle\Entity\RedirectResponseWithCookie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,6 +19,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class AdminController extends Controller
 {
+    public function getArticleRepository(){
+        return  $this->getDoctrine()->getManager()->getRepository('ScourgenWebBundle:BaseArticle');
+    }
+
+
     /**
      * @Route("/")
      * @Template()
@@ -34,23 +39,34 @@ class AdminController extends Controller
             if (($handle = fopen($request->files->get("articleinputfile"), "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                     $num = count($data);
-                    echo "<p> $num champs à la ligne $row: <br /></p>\n";
                     $row++;
-                    $baseArticle = new BaseArticle();
-                    $baseArticle->setReference($data[0]);
-                    $Eann= $data[1];
-                    $baseArticle->setReferenceFormat($data[2]);
-                    $baseArticle->setLibelle($data[3]);
-                    $baseArticle->setPuht($data[4]);
-                    $baseArticle->setHierarchie($data[5]);
-                    $reference_du_tarif =  $data[6];
-                    $baseArticle->setValidite($reference_du_tarif);
-                    $Codepagecatalogue = $data[7];
+                   /* echo "<p> $num champs à la ligne $row: <br /></p>\n";*/
+                    if($num>1){
+                        $articleRepository  = $this->getArticleRepository();
+                        $reference = $data[0];
+                        $article = $articleRepository->find($reference);
+                        if(!$article){
+                            $baseArticle = new BaseArticle();
+                            $baseArticle->setReference($data[0]);
+                            $baseArticle->setLibelle($data[1]);
+                            $baseArticle->setPuht($data[2]);
+                            $baseArticle->setReferenceFormat($data[3]);
+                            $baseArticle->setHierarchie($data[4]);
+                            $reference_du_tarif =  $data[5];
+                            $baseArticle->setValidite($reference_du_tarif);
+                            $em->persist($baseArticle);
+                            $em->flush();
+                        }else{
+                            $article->setLibelle($data[1]);
+                            $article->setPuht($data[2]);
+                            $article->setReferenceFormat($data[3]);
+                            $article->setHierarchie($data[4]);
+                            $reference_du_tarif =  $data[5];
+                            $article->setValidite($reference_du_tarif);
+                            $em->flush();
+                        }
 
-
-
-                    $em->persist($baseArticle);
-                    $em->flush();
+                    }
                 }
                 fclose($handle);
             }else{
