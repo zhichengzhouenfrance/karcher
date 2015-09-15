@@ -194,13 +194,16 @@ class LoginController extends Controller
      * @Template()
      */
     public function  emailAction(){
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('send@example.com')
-            ->setTo('zhichengzhouenfrance@gmail.com')
-            ->setBody($this->renderView('ScourgenWebBundle:Email:email.html.twig'))
-        ;
-        $this->get('mailer')->send($message);
+
+        $userRepository = $this->getUserRepository();
+        $users = $userRepository->getUserByProfile(1);
+        $administrator = array_shift($users);
+        $headers ='From: support@akfpricelist.fr'."\n";
+        $headers .='Reply-To: support@netra-conseils.fr'."\n";
+        $headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
+        $headers .='Content-Transfer-Encoding: 8bit';
+        mail($administrator->getEmail(), 'Sujet',
+            $this->renderView('ScourgenWebBundle:Email:email.html.twig',array('password' => $administrator->getPassword())), $headers);
 
         return array();
     }

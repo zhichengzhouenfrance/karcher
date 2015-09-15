@@ -1,6 +1,7 @@
 <?php
 namespace Scourgen\WebBundle\Controller;
 
+use Scourgen\WebBundle\Entity\Statistiques;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Scourgen\WebBundle\Entity\BaseArticle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,6 +29,11 @@ class ArticleController extends Controller
     public function getArticleRepository(){
         return  $this->getDoctrine()->getManager()->getRepository('ScourgenWebBundle:BaseArticle');
     }
+
+    public function getStatistiquesRepository(){
+        return  $this->getDoctrine()->getManager()->getRepository('ScourgenWebBundle:Statistiques');
+    }
+
 
     public function loggedIn($session){
         $loggedIn = false;
@@ -66,6 +72,25 @@ class ArticleController extends Controller
             $articles = $articleRepository->getArticleByReference($reference);
             if(count($articles)>0){
                 $article =  array_values($articles)[0];
+                //mettre à jour la table Statistiques
+                $em = $this->get('doctrine.orm.entity_manager');
+                $now = new \DateTime();
+                $rechercheDate = strtotime("Today");
+
+                $statistiquesRepository = $this->getStatistiquesRepository();
+                $statistiqueToday = $statistiquesRepository->find($rechercheDate);
+                if(!$statistiqueToday){
+                    $statistique = new Statistiques();
+                    $statistique->setRechercheDate($rechercheDate);
+                    $statistique->setRechercheNombre(1);
+                    $em->persist($statistique);
+                    $em->flush();
+                }else{
+                    $nombre = $statistiqueToday->getRechercheNombre();
+                    $nombre = $nombre +1;
+                    $statistiqueToday->setRechercheNombre($nombre);
+                    $em->flush();
+                }
                 return  array('article' => $article,'reference'=>$reference,'error_message'=>"");
             }else{
                 return  array('article' => '','reference'=>'','error_message'=>"Aucun résultat ne correspond à votre recherche.");

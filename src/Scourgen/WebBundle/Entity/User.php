@@ -30,6 +30,12 @@ class User{
      * @ORM\Column(type="boolean")
      */
     protected $profile;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $email;
+
     /**
      * Get id
      *
@@ -107,5 +113,30 @@ class User{
     public function getProfile()
     {
         return $this->profile;
+    }
+
+
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

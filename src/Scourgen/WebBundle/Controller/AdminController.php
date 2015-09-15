@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/admin")
@@ -21,6 +22,10 @@ class AdminController extends Controller
 {
     public function getArticleRepository(){
         return  $this->getDoctrine()->getManager()->getRepository('ScourgenWebBundle:BaseArticle');
+    }
+
+    public function getStatistiquesRepository(){
+        return  $this->getDoctrine()->getManager()->getRepository('ScourgenWebBundle:Statistiques');
     }
 
 
@@ -99,5 +104,20 @@ class AdminController extends Controller
             $uri = $this->get('router')->generate('scourgen_web_login_login', array());
             return $this->redirect($uri);
         }
+    }
+
+
+    /**
+     * @Route("/statistiques")
+     * @Template()
+     */
+    public function statistiquesAction(Request $request)
+    {
+
+        $statistiquesRepository = $this->getStatistiquesRepository();
+
+        $rechercheDate = strtotime("Today");
+        $statistiqueToday = $statistiquesRepository->find($rechercheDate);
+        return new JsonResponse(array('name' => $statistiqueToday->getRechercheNombre()));
     }
 }

@@ -15,4 +15,8 @@ class UserRepository extends EntityRepository
     public function getUserByIdentifiant($identifiant){
        return $this->findBy(array('identifiant'=>$identifiant));
     }
+
+    public function getUserByProfile($profile){
+        return $this->findBy(array('profile'=>$profile));
+    }
 }
