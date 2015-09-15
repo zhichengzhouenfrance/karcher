@@ -54,7 +54,7 @@ class LoginController extends Controller
                 $identifiant =  $request->request->get($identifiantName);
                 //le nombre de caractères qui doit être de 10 && l'identifiant qui doit commencer par 1701
 
-                if(strlen($identifiant)>=10&& $this->startsWith($identifiant,"1701")){
+                if(strlen($identifiant) == 10&& $this->startsWith($identifiant,"1701")){
 
                     $userRepository = $this->getUserRepository();
                     $users = $userRepository->getUserByIdentifiant($identifiant);
@@ -185,6 +185,22 @@ class LoginController extends Controller
          * */
         unset($_COOKIE['identifiant']);
         setcookie('identifiant', null, -1, '/');
+
+        return array();
+    }
+
+    /**
+     * @Route("/email")
+     * @Template()
+     */
+    public function  emailAction(){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo('zhichengzhouenfrance@gmail.com')
+            ->setBody($this->renderView('ScourgenWebBundle:Email:email.html.twig'))
+        ;
+        $this->get('mailer')->send($message);
 
         return array();
     }

@@ -24,70 +24,80 @@ class AdminController extends Controller
     }
 
 
+    public function loggedIn($session){
+        $loggedIn = false;
+        if($session->has('identifiant')||isset($_COOKIE['identifiant']))
+            $loggedIn = true;
+        return $loggedIn;
+    }
+
     /**
      * @Route("/")
      * @Template()
      */
     public function indexAction(Request $request)
     {
-        // upload file base article
-        $em = $this->get('doctrine.orm.entity_manager');
-        if($request->files->get("articleinputfile") != null){
+        $session = $request->getSession();
+        if($this->loggedIn($session)) {
+            // upload file base article
+            $em = $this->get('doctrine.orm.entity_manager');
+            if ($request->files->get("articleinputfile") != null) {
 
 
-            $row = 1;
-            if (($handle = fopen($request->files->get("articleinputfile"), "r")) !== FALSE) {
-                while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-                    $num = count($data);
-                    $row++;
-                   /* echo "<p> $num champs à la ligne $row: <br /></p>\n";*/
-                    if($num>1){
-                        $articleRepository  = $this->getArticleRepository();
-                        $reference = $data[0];
-                        $article = $articleRepository->find($reference);
-                        if(!$article){
-                            $baseArticle = new BaseArticle();
-                            $baseArticle->setReference($data[0]);
-                            $baseArticle->setLibelle($data[1]);
-                            $baseArticle->setPuht($data[2]);
-                            $baseArticle->setReferenceFormat($data[3]);
-                            $baseArticle->setHierarchie($data[4]);
-                            $reference_du_tarif =  $data[5];
-                            $baseArticle->setValidite($reference_du_tarif);
-                            $em->persist($baseArticle);
-                            $em->flush();
-                        }else{
-                            $article->setLibelle($data[1]);
-                            $article->setPuht($data[2]);
-                            $article->setReferenceFormat($data[3]);
-                            $article->setHierarchie($data[4]);
-                            $reference_du_tarif =  $data[5];
-                            $article->setValidite($reference_du_tarif);
-                            $em->flush();
+                $row = 1;
+                if (($handle = fopen($request->files->get("articleinputfile"), "r")) !== FALSE) {
+                    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+                        $num = count($data);
+                        $row++;
+                        /* echo "<p> $num champs à la ligne $row: <br /></p>\n";*/
+                        if ($num > 1) {
+                            $articleRepository = $this->getArticleRepository();
+                            $reference = $data[0];
+                            $article = $articleRepository->find($reference);
+                            if (!$article) {
+                                $baseArticle = new BaseArticle();
+                                $baseArticle->setReference($data[0]);
+                                $baseArticle->setLibelle($data[1]);
+                                $baseArticle->setPuht($data[2]);
+                                $baseArticle->setReferenceFormat($data[3]);
+                                $baseArticle->setHierarchie($data[4]);
+                                $reference_du_tarif = $data[5];
+                                $baseArticle->setValidite($reference_du_tarif);
+                                $em->persist($baseArticle);
+                                $em->flush();
+                            } else {
+                                $article->setLibelle($data[1]);
+                                $article->setPuht($data[2]);
+                                $article->setReferenceFormat($data[3]);
+                                $article->setHierarchie($data[4]);
+                                $reference_du_tarif = $data[5];
+                                $article->setValidite($reference_du_tarif);
+                                $em->flush();
+                            }
+
                         }
-
                     }
+                    fclose($handle);
+                } else {
+                    return array();
                 }
-                fclose($handle);
-            }else{
-                return array();
             }
+
+            $dql = "SELECT a FROM ScourgenWebBundle:BaseArticle a";
+            $query = $em->createQuery($dql);
+
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                $query,
+                $request->query->getInt('page', 1)/*page number*/,
+                10/*limit per page*/
+            );
+
+
+            return array('pagination' => $pagination);
+        }else{
+            $uri = $this->get('router')->generate('scourgen_web_login_login', array());
+            return $this->redirect($uri);
         }
-
-
-
-
-        $dql   = "SELECT a FROM ScourgenWebBundle:BaseArticle a";
-        $query = $em->createQuery($dql);
-
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
-
-
-        return array('pagination' => $pagination);
     }
 }

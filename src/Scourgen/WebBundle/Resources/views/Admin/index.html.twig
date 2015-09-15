@@ -4,8 +4,8 @@
         <div class="row">
             <div class="span12">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a ng-click="affichePage('admin')">Administration</a></li>
-                    <li role="presentation"><a  ng-click="affichePage('static')">Statiques</a></li>
+                    <li role="presentation" ng-class="adminActive"><a ng-click="affichePage('admin')">Administration</a></li>
+                    <li role="presentation" ng-class="statisticActive"><a  ng-click="affichePage('static')">Statistiques</a></li>
                 </ul>
             </div>
         </div>
@@ -52,9 +52,10 @@
             <div class="navigation">
                 {{ knp_pagination_render(pagination) }}
             </div>
+
         </div>
         <div class="row" ng-if="actualPage == 'static'">
-
+            <nvd3 options="options" data="data"></nvd3>
         </div>
     </div>
     {% block foot %}

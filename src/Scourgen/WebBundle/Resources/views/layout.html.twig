@@ -25,6 +25,14 @@
     <link rel="icon" sizes="192x192" href="{{ asset('bundles/scourgenweb/images/AKFPricelistIcon.png') }}">
     <link rel="icon" sizes="57x57" href="{{ asset('bundles/scourgenweb/images/AKFPricelistIcon.png') }}">
 
+    <!--IE 10 -->
+    <meta name="name" content="" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-square70x70logo" content="{{ asset('bundles/scourgenweb/images/AKFPricelistIcon.png') }}" />
+    <meta name="msapplication-square150x150logo" content="{{ asset('bundles/scourgenweb/images/AKFPricelistIcon.png') }}" />
+    <meta name="msapplication-wide310x150logo" content="{{ asset('bundles/scourgenweb/images/AKFPricelistIcon.png') }}" />
+    <meta name="msapplication-square310x310logo" content="{{ asset('bundles/scourgenweb/images/AKFPricelistIcon.png') }}" />
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/bootstrap-theme.min.css') }}">
@@ -38,6 +46,7 @@
 
     <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/login.bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/kaercher.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/scourgenweb/css/nv.d3.min.css') }}">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="{{ asset('bundles/scourgenweb/js/jquery.min.js') }}"></script>
@@ -45,7 +54,9 @@
     <script src="{{ asset('bundles/scourgenweb/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('bundles/scourgenweb/js/bootstrap-switch.min.js') }}"></script>
     <script src="{{ asset('bundles/scourgenweb/js/angular.min.js') }}"></script>
-
+    <script src="{{ asset('bundles/scourgenweb/js/d3.min.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/nv.d3.min.js') }}"></script>
+    <script src="{{ asset('bundles/scourgenweb/js/angular-nvd3.js') }}"></script>
     <!-- customized javascript -->
     <script src="{{ asset('bundles/scourgenweb/js/kaercher.autocomplete.js') }}"></script>
     <script src="{{ asset('bundles/scourgenweb/js/kaercher.angular.app.js') }}"></script>
@@ -53,6 +64,30 @@
     <script src="{{ asset('bundles/scourgenweb/js/kaercher.angular.login.controller.js') }}"></script>
 
 
+
+    <script type="text/javascript">
+
+        if(("standalone" in window.navigator) && window.navigator.standalone){
+
+            var noddy, remotes = false;
+
+            document.addEventListener('click', function(event) {
+
+                noddy = event.target;
+
+                while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+                    noddy = noddy.parentNode;
+                }
+
+                if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
+                {
+                    event.preventDefault();
+                    document.location.href = noddy.href;
+                }
+
+            },false);
+        }
+    </script>
 </head>
 <body ng-app="kaercherApp">
 {% block head %}

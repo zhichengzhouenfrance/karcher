@@ -1,1 +1,1 @@
-var kaercherApp = angular.module('kaercherApp', []);
+var kaercherApp = angular.module('kaercherApp', ['nvd3']);

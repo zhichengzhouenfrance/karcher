@@ -137,3 +137,9 @@ and (orientation : portrait) {
     }
 
 }
+
+a{
+    color: #000000;
+    outline-color: #000000;
+}
+
