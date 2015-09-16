@@ -55,7 +55,29 @@
 
         </div>
         <div class="row" ng-if="actualPage == 'static'">
-            <nvd3 options="options" data="data"></nvd3>
+            <div class="seperator"></div>
+            <div class="col-md-9">
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Periode</th>
+                            <th>Aujourd'hui: {[{ dayCourrant }]}</th>
+                            <th>Semaine: {[{ weekCourrant }]}</th>
+                            <th>Mois: {[{ moisCourrant }]}</th>
+                            <th>Année: {[{ yearCourrant }]}</th>
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Nombre de requêtes</th>
+                            <td> {[{ nombreToday }]}</td>
+                            <td> {[{ nombreWeek }]}</td>
+                            <td> {[{ nombreMonth }]}</td>
+                            <td> {[{ nombreYear}]}</td>
+                        </tr>
+                    </tbody>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
     {% block foot %}

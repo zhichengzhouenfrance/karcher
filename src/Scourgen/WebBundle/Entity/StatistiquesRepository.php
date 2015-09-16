@@ -23,6 +23,21 @@ class StatistiquesRepository extends EntityRepository
         return $statistiqueToday;
     }
 
+    public function getNombreRechercheWeek(){
+        $today = strtotime("Today");
+        $firstDayOfWeek = strtotime("first day of this week");
+        $query = $this->createQueryBuilder('s')
+            ->select("SUM(s.rechercheNombre)")
+            ->where('s.rechercheDate >= :firstDayOfWeek ')
+            ->andWhere('s.rechercheDate <= :today ')
+            ->setParameter('today',$today)
+            ->setParameter('firstDayOfWeek',$firstDayOfWeek)
+            ->getQuery();
+        $statistiqueTheWeek = $query->getResult();
+        return  $statistiqueTheWeek[0][1];
+    }
+
+
     public function getNombreRechercheMonth(){
         $today = strtotime("Today");
         $firstDayOfMonth = strtotime("first day of this month");
@@ -34,7 +49,7 @@ class StatistiquesRepository extends EntityRepository
             ->setParameter('firstDayOfMonth',$firstDayOfMonth)
             ->getQuery();
         $statistiqueTheMonth = $query->getResult();
-        return $statistiqueTheMonth;
+        return  $statistiqueTheMonth[0][1];
     }
 
     public function getNombreRechercheYear(){
@@ -48,6 +63,6 @@ class StatistiquesRepository extends EntityRepository
             ->setParameter('firstDayOfYear',$firstDayOfYear)
             ->getQuery();
         $statistiqueTheYear = $query->getResult();
-        return $statistiqueTheYear;
+        return $statistiqueTheYear[0][1];
     }
 }

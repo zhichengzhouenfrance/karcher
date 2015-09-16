@@ -9,12 +9,12 @@ $(function() {
                 url: "autocomplete/",
                 success: response,
                 error: function(data) {
-                   /* $('input.suggest-user').removeClass('ui-autocomplete-loading');*/
+                    /* $('input.suggest-user').removeClass('ui-autocomplete-loading');*/
                 }
             });
         },
         select: function( event, ui ) {
-           $('#reference').val(ui.item.value);
+            $('#reference').val(ui.item.value);
             console.log(ui.item.value);
             $( "#article_form" ).submit()
         },

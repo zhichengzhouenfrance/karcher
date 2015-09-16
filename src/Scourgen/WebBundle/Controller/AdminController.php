@@ -115,8 +115,12 @@ class AdminController extends Controller
     {
 
         $statistiquesRepository = $this->getStatistiquesRepository();
-
         $statistiqueToday = $statistiquesRepository->getNombreRechercheToday();
-        return new JsonResponse(array('name' => $statistiqueToday->getRechercheNombre()));
+        $nombreRechercheToday = $statistiqueToday->getRechercheNombre();
+        $nombreRechercheWeek = $statistiquesRepository->getNombreRechercheWeek();
+        $nombreRechercheThisMonth = $statistiquesRepository->getNombreRechercheMonth();
+        $nombreRechercheThisYear = $statistiquesRepository->getNombreRechercheYear();
+
+        return new JsonResponse(array('nombre' => array($nombreRechercheToday,$nombreRechercheWeek,$nombreRechercheThisMonth,$nombreRechercheThisYear)));
     }
 }
