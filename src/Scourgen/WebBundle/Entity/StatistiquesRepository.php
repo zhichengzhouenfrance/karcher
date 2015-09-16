@@ -12,4 +12,42 @@ use Doctrine\ORM\EntityRepository;
  */
 class StatistiquesRepository extends EntityRepository
 {
+    public function getNombreRechercheToday(){
+        $today = strtotime("Today");
+        $query = $this->createQueryBuilder('s')
+                ->where('s.rechercheDate = :today')
+                ->setParameter('today',$today)
+                ->getQuery();
+        $arrayStatistques = $query->getResult();
+        $statistiqueToday = array_shift($arrayStatistques);
+        return $statistiqueToday;
+    }
+
+    public function getNombreRechercheMonth(){
+        $today = strtotime("Today");
+        $firstDayOfMonth = strtotime("first day of this month");
+        $query = $this->createQueryBuilder('s')
+            ->select("SUM(s.rechercheNombre)")
+            ->where('s.rechercheDate >= :firstDayOfMonth ')
+            ->andWhere('s.rechercheDate <= :today ')
+            ->setParameter('today',$today)
+            ->setParameter('firstDayOfMonth',$firstDayOfMonth)
+            ->getQuery();
+        $statistiqueTheMonth = $query->getResult();
+        return $statistiqueTheMonth;
+    }
+
+    public function getNombreRechercheYear(){
+        $today = strtotime("Today");
+        $firstDayOfYear = strtotime("first day of this year");
+        $query = $this->createQueryBuilder('s')
+            ->select("SUM(s.rechercheNombre)")
+            ->where('s.rechercheDate >= :firstDayOfYear ')
+            ->andWhere('s.rechercheDate <= :today ')
+            ->setParameter('today',$today)
+            ->setParameter('firstDayOfYear',$firstDayOfYear)
+            ->getQuery();
+        $statistiqueTheYear = $query->getResult();
+        return $statistiqueTheYear;
+    }
 }

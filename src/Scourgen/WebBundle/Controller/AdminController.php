@@ -116,8 +116,7 @@ class AdminController extends Controller
 
         $statistiquesRepository = $this->getStatistiquesRepository();
 
-        $rechercheDate = strtotime("Today");
-        $statistiqueToday = $statistiquesRepository->find($rechercheDate);
+        $statistiqueToday = $statistiquesRepository->getNombreRechercheToday();
         return new JsonResponse(array('name' => $statistiqueToday->getRechercheNombre()));
     }
 }
