@@ -115,11 +115,11 @@ class AdminController extends Controller
     {
 
         $statistiquesRepository = $this->getStatistiquesRepository();
-        $statistiqueToday = $statistiquesRepository->getNombreRechercheToday();
-        $nombreRechercheToday = 0;
+        $nombreRechercheToday = $statistiquesRepository->getNombreRechercheToday();
+     /*   $nombreRechercheToday = 0;
         if($statistiqueToday){
             $nombreRechercheToday = $statistiqueToday->getRechercheNombre();
-        }
+        }*/
         $nombreRechercheWeek = $statistiquesRepository->getNombreRechercheWeek();
         $nombreRechercheThisMonth = $statistiquesRepository->getNombreRechercheMonth();
         $nombreRechercheThisYear = $statistiquesRepository->getNombreRechercheYear();

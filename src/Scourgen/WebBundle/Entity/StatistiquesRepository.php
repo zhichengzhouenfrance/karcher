@@ -15,12 +15,12 @@ class StatistiquesRepository extends EntityRepository
     public function getNombreRechercheToday(){
         $today = strtotime("Today");
         $query = $this->createQueryBuilder('s')
+                ->select("SUM(s.rechercheNombre)")
                 ->where('s.rechercheDate = :today')
                 ->setParameter('today',$today)
                 ->getQuery();
         $arrayStatistques = $query->getResult();
-        $statistiqueToday = array_shift($arrayStatistques);
-        return $statistiqueToday;
+        return $arrayStatistques[0][1];
     }
 
     public function getNombreRechercheWeek(){

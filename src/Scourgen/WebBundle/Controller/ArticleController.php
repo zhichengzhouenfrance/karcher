@@ -42,6 +42,16 @@ class ArticleController extends Controller
         return $loggedIn;
     }
 
+    public function getIdentifiant($session){
+        $identifiant = null;
+        if($session->has('identifiant')){
+            $identifiant = $_SESSION['identifiant'];
+        }elseif(isset($_COOKIE['identifiant'])){
+            $identifiant = $_COOKIE['identifiant'];
+        }
+        return $identifiant;
+    }
+
 
     /**
      * @Route("/")
@@ -73,22 +83,28 @@ class ArticleController extends Controller
             if(count($articles)>0){
                 $article =  array_values($articles)[0];
                 //mettre à jour la table Statistiques
-                $em = $this->get('doctrine.orm.entity_manager');
+                $session = $request->getSession();
+                $identifiant = $this->getIdentifiant($session);
                 $now = new \DateTime();
                 $rechercheDate = strtotime("Today");
-
+                $idStatistique = $identifiant.$rechercheDate;
                 $statistiquesRepository = $this->getStatistiquesRepository();
-                $statistiqueToday = $statistiquesRepository->find($rechercheDate);
-                if(!$statistiqueToday){
+                $statistiqueTodayForUser = $statistiquesRepository->find($idStatistique);
+                $em = $this->get('doctrine.orm.entity_manager');
+                if(!$statistiqueTodayForUser){
                     $statistique = new Statistiques();
                     $statistique->setRechercheDate($rechercheDate);
                     $statistique->setRechercheNombre(1);
+                    $statistique->setIdentifiant($identifiant);
+                    $date = $now->format("Y-m-d");
+                    $statistique->setDate($date);
+                    $statistique->setId($idStatistique);
                     $em->persist($statistique);
                     $em->flush();
                 }else{
-                    $nombre = $statistiqueToday->getRechercheNombre();
+                    $nombre = $statistiqueTodayForUser->getRechercheNombre();
                     $nombre = $nombre +1;
-                    $statistiqueToday->setRechercheNombre($nombre);
+                    $statistiqueTodayForUser->setRechercheNombre($nombre);
                     $em->flush();
                 }
                 return  array('article' => $article,'reference'=>$reference,'error_message'=>"");
