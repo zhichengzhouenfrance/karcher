@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * @Route("/admin")
@@ -126,4 +127,38 @@ class AdminController extends Controller
 
         return new JsonResponse(array('nombre' => array($nombreRechercheToday,$nombreRechercheWeek,$nombreRechercheThisMonth,$nombreRechercheThisYear)));
     }
+
+
+    /**
+     *@Route("/export")
+     * @Template()
+     */
+    public function exportAction()
+    {
+        // get the service container to pass to the closure
+        $statistiquesRepository = $this->getStatistiquesRepository();
+        $response = new StreamedResponse(function() use($statistiquesRepository) {
+
+            $results =$statistiquesRepository->findAll();
+            $handle = fopen('php://output', 'r+');
+            fputcsv($handle, array('id', 'date', 'no'),';');
+            if(count($results)>0){
+                foreach ($results as $statistique){
+                    fputcsv(
+                        $handle, // The file pointer
+                        array($statistique->getIdentifiant(), $statistique->getDate(),$statistique->getRechercheNombre()), // The fields
+                        ';' // The delimiter
+                    );
+                }
+            }
+
+            fclose($handle);
+        });
+
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+
+        return $response;
+    }
+
 }
