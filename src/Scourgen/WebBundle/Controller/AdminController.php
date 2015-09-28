@@ -141,7 +141,7 @@ class AdminController extends Controller
 
             $results =$statistiquesRepository->findAll();
             $handle = fopen('php://output', 'r+');
-            fputcsv($handle, array('id', 'date', 'no'),';');
+            fputcsv($handle, array('id', 'date', 'Nb recherche'),';');
             if(count($results)>0){
                 foreach ($results as $statistique){
                     fputcsv(
